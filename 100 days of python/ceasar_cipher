@@ -1,0 +1,40 @@
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
+'m', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+direcction = input("type 'encode' to encrypt, type 'decode' to decrypt:\n")
+text = input("type your text:\n").lower()
+shift = int(input("type your shift:\n"))
+
+def cipher(direcction, text, shift):
+    if direcction == "encode":
+        for i in range(len(text)):
+            if text[i] in alphabet:
+                text = text.replace(text[i], alphabet[(alphabet.index(text[i]) + shift) % 26])
+        print(text)
+    elif direcction == "decode":
+        for i in range(len(text)):
+            if text[i] in alphabet:
+                text = text.replace(text[i], alphabet[(alphabet.index(text[i]) - shift) % 26])
+        print(text)
+    else:
+        print('pls input "encode" or "decode"')
+    again = input('type "yes" if you want to go on, type "no" if you want to quit:\n').lower()
+    if again == "yes":
+        direcction = input("type 'encode' to encrypt, type 'decode' to decrypt:\n")
+        if direcction == "encode":
+            text = input("type your text:\n").lower()
+            shift = int(input("type your shift:\n"))
+            cipher(direcction, text, shift)
+        elif direcction == "decode":
+            shift = int(input("type your shift:\n"))
+            cipher(direcction, text, shift)
+    elif again == "no":
+        print("bye")
+        exit()
+    else:
+        print('pls input "yes" or "no"')
+        
+
+
+cipher(direcction, text, shift)
+
