@@ -1,0 +1,22 @@
+import os 
+clear = lambda: os.system('clear')
+
+print("Welcome to the secret auction program.")
+
+bids = {}
+
+num = int(input("How many people are bidding? "))
+
+def blind_auction(num):
+    for i in range(num):
+        bidder = input("What is your name?: ").lower()
+        bid = int(input("What is your bid?: $"))
+        bids[bidder] = bid
+
+        clear()
+
+    for i in bids:
+        print(f"{i} bid ${bids[i]}")
+        print("The winner is: " + max(bids, key=bids.get))
+
+blind_auction(num)
